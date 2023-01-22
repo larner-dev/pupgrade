@@ -26,6 +26,8 @@ npm install -g npx @larner.dev/pupgrade
 pupgrade <command> ...options
 ```
 
+---
+
 ### pupgrade new
 
 > Used when you are starting a new project from a plop template:
