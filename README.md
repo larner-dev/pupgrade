@@ -1,18 +1,81 @@
-# @larner.dev/pupgrade
+![PUPGRADE](./pupgrade-logo.png)
 
-## Setup
+[Plop](https://github.com/plopjs/plop) is a wonderful code generation / scaffolding tool, but upgrading projects when the original template changed is a pain. PUPGRADE (short for plop-upgrade) is a tool that makes this upgrade process easy.
 
-Run `npm install`
+## How it works
 
-## Commands
+...
 
-Use `npm run` followed by any of these commands:
+PUPGRADE supports both a cli interface as well as an API for programmatic use.
 
-- `build`: Output both ESM and CJS versions of the project, as well as type definitions to `build` directory.
-- `build-cjs`: Output CJS versions of the project to `build/cjs` directory.
-- `build-ems`: Output ESM versions of the project to `build/esm` directory.
-- `build-types`: Output type definitions to `build/types.d.ts` file.
-- `dev`: Re-build the ESM version any time there are changes to the project.
-- `format`: Format all typescript files using prettier.
-- `lint`: Run the linter to check for errors.
-- `test`: Run unit tests.
+## Command Line
+
+You can run pupgrade using npx or install it locally:
+
+### Using npx
+
+```
+npx @larner.dev/pupgrade <command> ...options
+```
+
+### Installing locally
+
+```
+npm install -g npx @larner.dev/pupgrade
+
+pupgrade <command> ...options
+```
+
+### Commands
+
+#### new
+
+> Used when you are starting a new project from a plop template:
+
+```
+pupgrade new path/to/project --template path/to/plopfile.js
+```
+
+##### Arguments
+
+- `path`: Location where the new project should be generated.
+
+##### options
+
+- `-t, --template <plopfile>`: Location of the plopfile to use.
+- `-h, --help`: Show help for this command.
+
+#### init
+
+> Used when you want to set up PUPGRADE in an existing project that wasn't originally generated with PUPGRADE:
+
+```
+pupgrade init path/to/project --template path/to/plopfile.js
+```
+
+##### Arguments
+
+- `path`: Location of the existing project.
+
+##### options
+
+- `-t, --template <plopfile>`: Location of the plopfile that was originally used to generate this project.
+- `-h, --help`: Show help for this command.
+
+#### upgrade
+
+> Used when the underlying template changes and you want to update an existing project that was originally generated with an older version of the template.
+
+```
+pupgrade upgrade path/to/project --template path/to/new/plopfile.js
+```
+
+##### Arguments
+
+- `path`: Location of the existing project.
+
+##### options
+
+- `-t, --template <plopfile>`: Location of the new plopfile.
+- `-u, --update`: Use this flag if you'd like to update your answers to the questions in the plopfile. Without this flag the upgrade process will assume your answers have remained unchanged.
+- `-h, --help`: Show help for this command.
