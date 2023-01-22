@@ -1,14 +1,8 @@
 ![PUPGRADE](./pupgrade-logo.png)
 
-[Plop](https://github.com/plopjs/plop) is a wonderful code generation / scaffolding tool, but upgrading projects when the original template changed is a pain. PUPGRADE (short for plop-upgrade) is a tool that makes this upgrade process easy.
+PUPGRADE is a tool that simplifies the process of upgrading projects generated with [Plop](https://github.com/plopjs/plop). It works by storing hashed versions of the original templates used to generate each project, and then comparing the current version of the template and project code to determine what action should be taken (overwrite, ignore, or show conflict) when upgrading.
 
-## How it works
-
-Under the hood, PUPGRADE stores hashed of the original version of the template that was used to generate each project. When the underlying template changes and you run pupgrade, it looks at each file and decides what to do (overwrite, ignore, show conflict) based on the original version of the template, the new version of the template and the current version of the project code.
-
-PUPGRADE has special handling for config files (currently only JSON is supported). Since these files are often the source of conflicts, rather than comparing the entire file it looks at each property individually to determine if it can be safely overwritten or if it needs to generate a conflict.
-
-PUPGRADE supports both a cli interface as well as a node API for programmatic use.
+PUPGRADE has special handling for config files, such as JSON files, by comparing each property individually to determine if it can be safely overwritten or if a conflict needs to be generated. It also supports both a command line interface and a Node API for programmatic use.
 
 ## Command Line
 
