@@ -4,9 +4,11 @@
 
 ## How it works
 
-...
+Under the hood, PUPGRADE stores hashed of the original version of the template that was used to generate each project. When the underlying template changes and you run pupgrade, it looks at each file and decides what to do (overwrite, ignore, show conflict) based on the original version of the template, the new version of the template and the current version of the project code.
 
-PUPGRADE supports both a cli interface as well as an API for programmatic use.
+PUPGRADE has special handling for config files (currently only JSON is supported). Since these files are often the source of conflicts, rather than comparing the entire file it looks at each property individually to determine if it can be safely overwritten or if it needs to generate a conflict.
+
+PUPGRADE supports both a cli interface as well as a node API for programmatic use.
 
 ## Command Line
 
@@ -83,3 +85,25 @@ pupgrade upgrade path/to/project --template path/to/new/plopfile.js
 - `-t, --template <plopfile>`: Location of the new plopfile.
 - `-u, --update`: Use this flag if you'd like to update your answers to the questions in the plopfile. Without this flag the upgrade process will assume your answers have remained unchanged.
 - `-h, --help`: Show help for this command.
+
+## Node API
+
+## Upgrade Algorithm
+
+For each file in the template, the tool looks at 3 versions of the file.
+
+1. `before`: the file from the previous version of the template
+1. `current`: the file from the current version of the project
+1. `new`: the file from the new version of the template
+
+| Relationship             | Action                                                                                                                                  |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| before == current == new | Pick **current** version. Nothing has changed.                                                                                          |
+| before == new            | Pick **current** version. The underlying template hasn't changed, but the project has modified this file.                               |
+| current == new           | Pick **current** version. The underlying template has changed, but the project has already been updated.                                |
+| before == current        | Pick **new** version. The underlying template has changed, but the project has not modified this file, so it's probably safe to update. |
+| all different            | Generate **diff**. All three versions are different so you will need to resolve the conflict manually.                                  |
+
+The above logic applies to all non config files (currently anything other than files with a .json extension).
+
+For config files, similar logic is used, but each property is checked rather than applying the logic to the entire file.
