@@ -26,9 +26,7 @@ npm install -g npx @larner.dev/pupgrade
 pupgrade <command> ...options
 ```
 
-### Commands
-
-#### new
+### pupgrade new
 
 > Used when you are starting a new project from a plop template:
 
@@ -45,7 +43,7 @@ pupgrade new path/to/project --template path/to/plopfile.js
 - `-t, --template <plopfile>`: Location of the plopfile to use.
 - `-h, --help`: Show help for this command.
 
-#### init
+### pupgrade init
 
 > Used when you want to set up PUPGRADE in an existing project that wasn't originally generated with PUPGRADE:
 
@@ -62,7 +60,7 @@ pupgrade init path/to/project --template path/to/plopfile.js
 - `-t, --template <plopfile>`: Location of the plopfile that was originally used to generate this project.
 - `-h, --help`: Show help for this command.
 
-#### upgrade
+### pupgrade upgrade
 
 > Used when the underlying template changes and you want to update an existing project that was originally generated with an older version of the template.
 
