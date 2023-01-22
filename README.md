@@ -43,6 +43,8 @@ pupgrade new path/to/project --template path/to/plopfile.js
 - `-t, --template <plopfile>`: Location of the plopfile to use.
 - `-h, --help`: Show help for this command.
 
+---
+
 ### pupgrade init
 
 > Used when you want to set up PUPGRADE in an existing project that wasn't originally generated with PUPGRADE:
@@ -59,6 +61,8 @@ pupgrade init path/to/project --template path/to/plopfile.js
 
 - `-t, --template <plopfile>`: Location of the plopfile that was originally used to generate this project.
 - `-h, --help`: Show help for this command.
+
+---
 
 ### pupgrade upgrade
 
